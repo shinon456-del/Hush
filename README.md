@@ -1,0 +1,2 @@
+# Hush
+School purposes 
