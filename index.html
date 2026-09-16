@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hush — Reserve a quiet seat on campus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 26 26" fill="none">
+        <circle cx="13" cy="13" r="12" stroke="var(--moss-deep)" stroke-width="1.4"/>
+        <path d="M8 15.5c1.6-5.2 4-6.7 4-6.7s1.4 3-.6 6.2c-1.3 2.1-3.4 1.7-3.4.5Z" fill="var(--moss-deep)"/>
+      </svg>
+      Hush
+    </div>
+    <nav class="nav-mobile-hide">
+      <div class="nav-links">
+        <a href="#browse">Browse spaces</a>
+        <a href="#how">How it works</a>
+        <a href="#reservations">My reservations</a>
+      </div>
+      <span class="pill-count" id="totalAvail">— open now</span>
+      <button class="account-btn" id="accountBtn">Sign in</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" width="16" height="16"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-quiet">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V8a5 5 0 0 0-5-5Z" stroke="currentColor" stroke-width="1.4"/><path d="M5 11v1a7 7 0 0 0 14 0v-1" stroke="currentColor" stroke-width="1.4"/><path d="M12 19v2" stroke="currentColor" stroke-width="1.4"/></svg>
+        Campus study space, reserved in advance
+      </div>
+      <h1>Find your quiet <em>corner</em> before someone else does.</h1>
+      <p class="lede">Hush isn't just a library seat map. It pools quiet spaces from across campus — library seats, classrooms sitting empty between classes, courtyard nooks, and other staff-approved rooms — so you always have somewhere to sit, even on a small campus with a small library.</p>
+
+      <div class="search-card">
+        <div class="search-row">
+          <div class="field">
+            <label for="fZone">Space type</label>
+            <select id="fZone">
+              <option value="all">Any space</option>
+              <option value="library">Library Seats</option>
+              <option value="classroom">Available Classrooms</option>
+              <option value="study-area">Study Areas</option>
+              <option value="other">Other Approved Spaces</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fQuiet">Noise level</label>
+            <select id="fQuiet">
+              <option value="all">Any</option>
+              <option value="0">Silent</option>
+              <option value="1">Low hum</option>
+              <option value="2">Moderate</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fDate">Date</label>
+            <input type="date" id="fDate">
+          </div>
+        </div>
+        <button class="find-btn" id="findBtn">Find a seat →</button>
+      </div>
+    </div>
+
+    <div class="category-showcase" id="categoryShowcase"></div>
+  </div>
+</section>
+
+<section class="strip">
+  <div class="wrap strip-row" id="zoneStrip"></div>
+</section>
+
+<section class="section" id="browse">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Spaces open today</h2>
+        <p>Every room is rated by how quiet it actually is — not just how it's labelled on a map.</p>
+      </div>
+      <label class="night-filter">
+        <input type="checkbox" id="fNight">
+        Late-night only
+      </label>
+      <span class="filter-note" id="resultCount"></span>
+    </div>
+    <div class="grid" id="spaceGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Three steps, no line at the door</h2>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Search by quiet, not just by room</h3>
+        <p>Filter by zone and noise level so you land in a room that actually matches how you study.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Pick a slot and hold your seat</h3>
+        <p>Reserve a two-hour block. Your seat is held for the first 15 minutes if you're running late.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Arrive, tap in, concentrate</h3>
+        <p>Show your reservation at the door. No re-booking, no hunting for an outlet — just sit and work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="band">
+      <div>
+        <h2>Quiet hours are the whole point.</h2>
+        <p>Library seats and the Thesis Night Desk are phone-free and conversation-free from open to close. Study areas like The Grove and Student Commons allow low, library-level conversation. Classrooms and other approved spaces released for group work are bookable for discussion at any volume.</p>
+      </div>
+      <p class="band-quote">"You don't need more coffee. You need forty-five uninterrupted minutes and nobody's group project three seats away."</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reservations">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>My reservations</h2>
+        <p>Held on this device only — this is a working mockup, so nothing here is a real booking.</p>
+      </div>
+    </div>
+    <div class="res-panel">
+      <div id="resList"><p class="res-empty">No reservations yet. Reserve a slot above and it'll show up here.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>Hush — a study space reservation mockup · Campus Study Services</span>
+    <span>Library open 7:00 AM–5:00 PM only · Classrooms, study areas &amp; other spaces extend well past that</span>
+  </div>
+</footer>
+
+<div class="login-backdrop" id="loginBackdrop">
+  <div class="login-modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="login-icon" aria-hidden="true">Student ID</div>
+    <h3 id="loginTitle">Sign in with your Student ID</h3>
+    <p class="sub">Campus policy requires a verified student ID to reserve a seat.</p>
+    <form id="loginForm">
+      <div class="login-field">
+        <label for="loginId">Student ID</label>
+        <input type="text" id="loginId" placeholder="e.g. 2023-04567" autocomplete="off" inputmode="text">
+      </div>
+      <div class="login-field">
+        <label for="loginPin">Portal PIN</label>
+        <input type="password" id="loginPin" placeholder="4–6 digit PIN" autocomplete="off" inputmode="numeric">
+      </div>
+      <div class="login-error" id="loginError"></div>
+      <button type="submit" class="login-submit">Sign in</button>
+      <button type="button" class="login-cancel" id="loginCancel">Not now</button>
+    </form>
+    <p class="login-note">This is a working mockup — any correctly-formatted ID and PIN will sign you in. Nothing is sent anywhere.</p>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="sheetBackdrop"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="sheetTitle">
+  <div class="sheet-grabber" id="sheetGrabber" aria-hidden="true"></div>
+  <div class="sheet-header">
+    <div>
+      <div class="cat-tag" id="sheetCat"></div>
+      <h3 id="sheetTitle"></h3>
+      <div class="sheet-loc" id="sheetLoc"></div>
+      <div class="sheet-hours" id="sheetHours"></div>
+    </div>
+    <button class="sheet-close" id="sheetClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="14" height="14"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  </div>
+  <div class="sheet-meter">
+    <div class="meter-label"><span>Noise level</span><span id="sheetQuietLabel"></span></div>
+    <div id="sheetMeter"></div>
+  </div>
+  <div class="sheet-amenities" id="sheetAmenities"></div>
+  <div class="sheet-slots-label">Choose a time</div>
+  <div class="slots-inner" id="sheetSlots"></div>
+  <button class="confirm-btn" id="sheetConfirm" disabled>Choose a time to reserve</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
